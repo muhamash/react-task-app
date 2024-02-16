@@ -30,8 +30,9 @@ function App ()
     const updatedFavorite = favorite.includes( taskId )
       ? favorite.filter( id => id !== taskId )
       : [ ...favorite, taskId ];
+    setFavorite(updatedFavorite)
     console.log(updatedFavorite)
-    setFavorite( updatedFavorite );
+    
   };
 
   return (
