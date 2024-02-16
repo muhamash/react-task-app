@@ -1,8 +1,14 @@
-import PropTypes from 'prop-types';
 import React from "react";
 import TableDataRow from "./TableDataRow";
 
-const Table = ({ taskData }) => {
+const Table = ( { taskData, handleChange } ) =>
+{
+    const handleDelete = ( deletedId ) =>
+    {
+        const updatedData = taskData.filter((item) => item.id !== deletedId);
+        handleChange( updatedData );
+    };
+
     return (
         <div className="overflow-auto">
             <table className="table-fixed overflow-auto xl:w-full">
@@ -19,7 +25,9 @@ const Table = ({ taskData }) => {
                 <tbody>
                     {taskData.map((task) => (
                         <React.Fragment key={task.id}>
-                            <TableDataRow title={task.title} description={task.description} tags={task.tags} />
+                            <TableDataRow title={ task.title } description={ task.description } tags={ task.tags } id={ task.id }
+                            handleDelete={handleDelete}
+                            />
                         </React.Fragment>
                     ))}
                 </tbody>
@@ -29,13 +37,13 @@ const Table = ({ taskData }) => {
     );
 };
 
-Table.propTypes = {
-    taskData: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        tags: PropTypes.arrayOf(PropTypes.string).isRequired
-    })).isRequired,
-};
+// Table.propTypes = {
+//     taskData: PropTypes.arrayOf(PropTypes.shape({
+//         id: PropTypes.number.isRequired,
+//         title: PropTypes.string.isRequired,
+//         description: PropTypes.string.isRequired,
+//         tags: PropTypes.arrayOf(PropTypes.string).isRequired
+//     })).isRequired,
+// };
 
 export default Table;

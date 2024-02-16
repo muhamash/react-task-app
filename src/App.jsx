@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 import taskData from './assets/data';
 import Footer from './components/Footer';
@@ -5,11 +6,14 @@ import Hero from './components/Hero';
 import Nav from './components/Nav';
 import SearchBox from './components/Table/SearchBox';
 import Table from './components/Table/Table';
-console.log( taskData );
 
 function App ()
 {
-
+  const [ data, setData ] = useState( taskData );
+  const handleChange = (updatedData) =>
+  {
+    setData(updatedData)
+  }
   return (
     <div className='bg-[#243f52] font-[Inter] text-white h-full'>
       <div>
@@ -30,7 +34,7 @@ function App ()
           </div>
           {/* Table */}
           <div>
-            <Table taskData={ taskData } />
+            <Table taskData={ data } handleChange={handleChange} />
           </div>
         </div>
       </div>

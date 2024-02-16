@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-const FavState = ({onClick} ) =>
+const FavState = ( ) =>
 {
     const [ favorite, setFavorite ] = useState( false );
     const handleFavorite = () =>
     {
         setFavorite( prevFavorite => !prevFavorite );
-        onClick(!favorite);
     }
     return (
         <div>

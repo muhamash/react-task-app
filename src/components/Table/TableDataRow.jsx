@@ -1,17 +1,12 @@
 import FavState from "./FavState";
 import Tags from "./Tags";
 
-const TableDataRow = ({title, description, tags}) =>
+const TableDataRow = ({title, description, tags, id, handleDelete}) =>
 {   
-    // const [ favorite, setFavorite ] = useState( false );
-    // const handleFavorite = () =>
-    // {
-    //     setFavorite( prevFavorite => !prevFavorite );
-    // };
     return (
         <tr className="border-b border-[#2E3443] [&>td]:align-baseline [&>td]:px-4 [&>td]:py-2">
             <td className="cursor-pointer">
-                <FavState onClick={(isFavorite)=>{console.log(isFavorite)} }/>
+                <FavState/>
             </td>
             <td>{ title }</td>
             <td>
@@ -27,8 +22,12 @@ const TableDataRow = ({title, description, tags}) =>
             <td className="text-center">High</td>
             <td>
                 <div className="flex items-center justify-center space-x-3">
-                    <button className="text-red-500">Delete</button>
-                    <button className="text-blue-500">Edit</button>
+                    <button
+                        onClick={ ()=> handleDelete(id) }
+                        className="text-red-500">Delete</button>
+                    <button
+                        
+                        className="text-blue-500">Edit</button>
                 </div>
             </td>
         </tr>
