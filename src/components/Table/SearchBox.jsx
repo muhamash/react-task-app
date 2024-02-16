@@ -1,12 +1,9 @@
-import { useState } from "react";
 
 const SearchBox = ( { handleSearch } ) =>
 {
-    const [ search, setSearch ] = useState( '' );
     const searchData = ( e ) =>
     {
         e.preventDefault();
-        setSearch( e.target.value );
         handleSearch( e );
     }
 
@@ -17,7 +14,6 @@ const SearchBox = ( { handleSearch } ) =>
                     <div className="relative overflow-hidden rounded-lg text-gray-50 md:min-w-[380px] lg:min-w-[440px]">
                         <input
                             onChange={ searchData }
-                            value={search}
                             type="search" id="search-dropdown"
                             className="z-20 block w-full bg-gray-800 px-4 py-2 pr-10 focus:outline-none" placeholder="Search Task"
                             required />
