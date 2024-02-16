@@ -1,11 +1,24 @@
-const SearchBox = () =>
+import { useState } from "react";
+
+const SearchBox = ( { handleSearch } ) =>
 {
+    const [ search, setSearch ] = useState( '' );
+    const searchData = ( e ) =>
+    {
+        e.preventDefault();
+        setSearch( e.target.value );
+        handleSearch( e );
+    }
+
     return (
         <div className="flex items-center space-x-5">
             <form>
                 <div className="flex">
                     <div className="relative overflow-hidden rounded-lg text-gray-50 md:min-w-[380px] lg:min-w-[440px]">
-                        <input type="search" id="search-dropdown"
+                        <input
+                            onChange={ searchData }
+                            value={search}
+                            type="search" id="search-dropdown"
                             className="z-20 block w-full bg-gray-800 px-4 py-2 pr-10 focus:outline-none" placeholder="Search Task"
                             required />
                         <button type="submit" className="absolute right-2 top-0 h-full rounded-e-lg text-white md:right-4">
@@ -20,7 +33,9 @@ const SearchBox = () =>
                 </div>
             </form>
             <button className="rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold">Add Task</button>
-            <button className="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold">Delete All</button>
+            <button
+                onClick={""}
+                className="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold">Delete All</button>
         </div>
     );
 };

@@ -12,8 +12,18 @@ function App ()
   const [ data, setData ] = useState( taskData );
   const handleChange = (updatedData) =>
   {
-    setData(updatedData)
+    setData( updatedData )
   }
+
+  const handleSearch = (e) =>
+  {
+    const searchValue = e.target.value;
+    const updatedData = taskData.filter( task =>
+      task.title.toLowerCase().includes( searchValue.toLowerCase() )
+    );
+    setData( updatedData );
+  }
+  
   return (
     <div className='bg-[#243f52] font-[Inter] text-white h-full'>
       <div>
@@ -30,7 +40,7 @@ function App ()
           {/* search box and button */ }
           <div className='mb-14 items-center justify-between sm:flex'>
             <h2 className="text-2xl font-semibold max-sm:mb-4">Your Tasks</h2>
-            <SearchBox/>
+            <SearchBox handleSearch={ handleSearch } />
           </div>
           {/* Table */}
           <div>
