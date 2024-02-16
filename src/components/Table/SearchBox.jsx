@@ -1,5 +1,4 @@
-
-const SearchBox = ( { handleSearch } ) =>
+const SearchBox = ( { handleSearch, onDeletedAll } ) =>
 {
     const searchData = ( e ) =>
     {
@@ -30,7 +29,7 @@ const SearchBox = ( { handleSearch } ) =>
             </form>
             <button className="rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold">Add Task</button>
             <button
-                onClick={""}
+                onClick={onDeletedAll}
                 className="rounded-md bg-red-500 px-3.5 py-2.5 text-sm font-semibold">Delete All</button>
         </div>
     );
