@@ -10,20 +10,30 @@ import Table from './components/Table/Table';
 function App ()
 {
   const [ data, setData ] = useState( taskData );
+  const [ favorite, setFavorite ] = useState( [] );
+
   const handleChange = (updatedData) =>
   {
     setData( updatedData )
   }
-
-  const handleSearch = (e) =>
+  
+  const handleSearch = (searchValue) =>
   {
-    const searchValue = e.target.value;
     const updatedData = taskData.filter( task =>
       task.title.toLowerCase().includes( searchValue.toLowerCase() )
     );
     setData( updatedData );
   }
   
+  const handleToggleFavorite = ( taskId ) =>
+  {
+    const updatedFavorite = favorite.includes( taskId )
+      ? favorite.filter( id => id !== taskId )
+      : [ ...favorite, taskId ];
+    console.log(updatedFavorite)
+    setFavorite( updatedFavorite );
+  };
+
   return (
     <div className='bg-[#243f52] font-[Inter] text-white h-full'>
       <div>
@@ -42,9 +52,9 @@ function App ()
             <h2 className="text-2xl font-semibold max-sm:mb-4">Your Tasks</h2>
             <SearchBox handleSearch={ handleSearch } />
           </div>
-          {/* Table */}
+          {/* Table */ }
           <div>
-            <Table taskData={ data } handleChange={handleChange} />
+            <Table taskData={ data } handleChange={ handleChange } favorite={favorite} handleToggleFavorite={handleToggleFavorite}/>
           </div>
         </div>
       </div>
@@ -53,7 +63,7 @@ function App ()
         <Footer />
       </div>
     </div>
-  );
+  )
 }
 
 export default App

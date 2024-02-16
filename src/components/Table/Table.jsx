@@ -1,7 +1,7 @@
 import React from "react";
 import TableDataRow from "./TableDataRow";
 
-const Table = ( { taskData, handleChange } ) =>
+const Table = ( { taskData, handleChange, favorite, handleToggleFavorite } ) =>
 {
     const handleDelete = ( deletedId ) =>
     {
@@ -27,11 +27,12 @@ const Table = ( { taskData, handleChange } ) =>
                         <React.Fragment key={task.id}>
                             <TableDataRow title={ task.title } description={ task.description } tags={ task.tags } id={ task.id }
                             handleDelete={handleDelete}
+                            favorite={favorite}
+                            handleToggleFavorite={handleToggleFavorite} 
                             />
                         </React.Fragment>
                     ))}
                 </tbody>
-
             </table>
         </div>
     );

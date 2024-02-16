@@ -4,7 +4,7 @@ const SearchBox = ( { handleSearch } ) =>
     const searchData = ( e ) =>
     {
         e.preventDefault();
-        handleSearch( e );
+        handleSearch( e.target.value );
     }
 
     return (
